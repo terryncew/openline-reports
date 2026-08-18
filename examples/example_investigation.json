@@ -1,0 +1,33 @@
+{
+  "investigation_id": "example-001",
+  "title": "Example research handoff",
+  "question": "Does the supplied evidence support the initial explanation?",
+  "initial_hypothesis": "The initial explanation is fully supported.",
+  "sources": [
+    {
+      "source_id": "s1",
+      "title": "Example primary record",
+      "locator": "fixture://example-primary-record",
+      "primary": true,
+      "standing": "active",
+      "notes": "Fixture only."
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "c1",
+      "text": "The fixture establishes only the repository contract, not a real-world result.",
+      "status": "supported",
+      "source_ids": ["s1"],
+      "uncertainty": "",
+      "depends_on": [],
+      "alternatives": []
+    }
+  ],
+  "objections": [],
+  "discovery_delta": "The starting explanation cannot be tested from fixture data; only the harness shape is demonstrated.",
+  "result_summary": "No empirical conclusion is claimed. The example shows a bounded candidate handoff.",
+  "disposition": "candidate",
+  "disposition_reason": "Fixture demonstrates schema and validation only.",
+  "reopened_from_hash": ""
+}

@@ -1,0 +1,9 @@
+Metadata-Version: 2.4
+Name: openline-reports
+Version: 0.2.1
+Summary: A generic evidence-first research handoff harness.
+Author: Terrynce White
+License: MIT
+Requires-Python: >=3.11
+License-File: LICENSE
+Dynamic: license-file
