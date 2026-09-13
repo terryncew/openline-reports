@@ -24,7 +24,12 @@ class ResearchSwarmTests(unittest.TestCase):
     def tearDown(self):
         self.temp.cleanup()
 
-    def execute(self, pack=None, agent=fixture_agent, strategy=CANDIDATE):
+    def execute(self, pack=None, agent=None, strategy=None):
+        # Resolve optional imports only after unittest has applied the class skip.
+        if agent is None:
+            agent = fixture_agent
+        if strategy is None:
+            strategy = CANDIDATE
         return run(pack or cases()[0][0], strategy, self.root / "run", agent)
 
     def test_three_roles_checked_handoffs_and_research_contract(self):
