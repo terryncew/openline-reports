@@ -1,0 +1,3 @@
+# Optional integration; exact revisions used by RESEARCH-SWARM-001.
+openline-lite @ git+https://github.com/terryncew/openline-lite.git@131492d9293ab8ac5827e9c531cc5a8972e45979
+openline-swarm-improvement-gate @ git+https://github.com/terryncew/openline-swarm-improvement-gate.git@cfa9d1e9176b4849e53146101b3345dcd825700b
