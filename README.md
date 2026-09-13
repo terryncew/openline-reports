@@ -138,3 +138,7 @@ Those applications provide their own final-use rules. This repository does not c
 ## Status
 
 v0.2.1 is a contract-hardening release. It makes source standing, dependency structure, alternative references, objection targets, runtime enums, disposition, and reopen lineage mechanically enforceable rather than merely representational.
+
+## Bounded research swarm
+
+[RESEARCH-SWARM-001](docs/RESEARCH_SWARM.md) connects three research roles through verified Lite handoffs and evaluates a proposed strategy before the existing Swarm Improvement Gate installs it. Includes a runnable offline experiment, signed evidence, adversarial tests, and a JSON bridge for external workers. Research integration; no live-model improvement claim.

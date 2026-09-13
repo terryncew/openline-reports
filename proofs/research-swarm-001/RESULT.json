@@ -1,0 +1,28 @@
+{
+  "baseline_score": 0.5,
+  "candidate_score": 1.0,
+  "decision": "PROMOTE",
+  "evaluator_public_key": "1bc8263c893f67d98e229a701f4ea384cc102e71b794a8868a19e6f12334994e",
+  "experiment": "RESEARCH-SWARM-001",
+  "generation": 1,
+  "mode": "synthetic-fixture",
+  "next_job_status": "supported",
+  "runtime_permission": "NONE",
+  "reports_base_commit": "8b80e275c9b9b7b5ec69e85604afc018deb0c5ff",
+  "python": "3.12.14",
+  "tests_passed": 47,
+  "release_check": "PASS",
+  "relocated_evidence_verification": "PASS",
+  "github_ci": "not_run_locally",
+  "evidence_zip_sha256": "0c35f105e744597fad46ba0e1b7c7552e6e0104a586c82b3e87f2e73146d7172",
+  "source_sha256": {
+    "README.md": "1688a5ac47a7cb78f013a62f06a4046be8a43af48fa7dbfd3285429ef0025938",
+    ".github/workflows/research-swarm.yml": "38dde02ddaeec9c755bb665ff5d2d281a5c9ab8933ebf9cf2deb000b2b31a88a",
+    "docs/RESEARCH_SWARM.md": "1e3ed9350a3967ebb210db135890186271b2fa1446df31a5bc04c98369e39946",
+    "requirements-swarm.txt": "e390a9149ff7dc6dac49a6a78aa29498170dfbfdff959535ef55a478571e1aa0",
+    "src/openline_reports/swarm/__init__.py": "0ca5048dcec54828b5f38086d569ef4c5b5b3dcadb7bfb070dfbcac2582988c1",
+    "src/openline_reports/swarm/runtime.py": "df89ab21db88f02dd89ccee5c6a541831f42dd10a7d9345bd37ca0a2c23a6976",
+    "src/openline_reports/swarm/experiment.py": "92d4a1b2cf571e94f54f5d867adb60ae5c7856424f8d946ab9f0d7a74306f988",
+    "tests/test_research_swarm.py": "c1f1836d8438bbe2b524c3aacf80030e66a69fa6e3c868aeb8984f607cc541fa"
+  }
+}
