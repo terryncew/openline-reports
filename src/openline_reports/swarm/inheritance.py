@@ -272,6 +272,18 @@ def _claim_graph_reopen(root: Path, support_text: str) -> tuple[dict[str, Any], 
     return bundle, report
 
 
+def require_persisted_promotion(decision: dict[str, Any], path: Path) -> None:
+    """Require the exact decision in a valid receiver-owned receipt chain."""
+    from olp_swarm_gate.receipts import load_receipts, verify_chain
+
+    if decision.get("decision") != "PROMOTE":
+        raise RuntimeError("expected_promotion_decision:" + str(decision.get("quarantine_flags", [])))
+    if not path.is_file() or not verify_chain(path)["valid"]:
+        raise RuntimeError("promotion_chain_missing_or_invalid")
+    if sum(receipt == decision for receipt in load_receipts(path)) != 1:
+        raise RuntimeError("promotion_decision_not_persisted_exactly_once")
+
+
 def run_earned_memory_proof(root: Path) -> dict[str, Any]:
     """Run the bounded two-generation interruption/inheritance prerequisite."""
 
@@ -415,8 +427,7 @@ def run_earned_memory_proof(root: Path) -> dict[str, Any]:
         now=now,
     )
     write(root / "decision.json", decision)
-    if decision.get("decision") != "PROMOTE" or not decision.get("receipt_persisted"):
-        raise RuntimeError("expected_persisted_promotion_decision")
+    require_persisted_promotion(decision, Path(policy.receipt_path))
 
     # Interruption: no ReceiverPromotionExecutor call yet.
     pre_state = store.read()
@@ -731,6 +742,7 @@ def verify_earned_memory_proof(
         raise ValueError("proof_adapter_receipt_count")
 
     decision = load(root / "decision.json")
+    require_persisted_promotion(decision, root / "promotion.jsonl")
     pre_state = load(root / "receiver-pre-promotion.json")
     post_state = load(root / "receiver-post-promotion.json")
     after_reopen = load(root / "receiver-after-reopen.json")

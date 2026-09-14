@@ -131,6 +131,25 @@ class EarnedMemoryIntegrationTests(unittest.TestCase):
         self.assertTrue(self.verification["evaluation_recomputed"])
         self.assertTrue(self.verification["claim_graph_recomputed"])
 
+    def test_persistence_requires_exact_stored_receipt(self):
+        from openline_reports.swarm.inheritance import require_persisted_promotion
+        decision = json.loads((self.root / "decision.json").read_text())
+        self.assertNotIn("receipt_persisted", decision)
+        require_persisted_promotion(decision, self.root / "promotion.jsonl")
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "receipts.jsonl"
+            with self.assertRaises(RuntimeError):
+                require_persisted_promotion({**decision, "receipt_persisted": True}, path)
+            path.write_text("")
+            with self.assertRaises(RuntimeError):
+                require_persisted_promotion(decision, path)
+            shutil.copyfile(self.root / "promotion.jsonl", path)
+            with self.assertRaises(RuntimeError):
+                require_persisted_promotion({**decision, "proposal_id": "other"}, path)
+            path.write_text(path.read_text() + "not-json\n")
+            with self.assertRaises(RuntimeError):
+                require_persisted_promotion(decision, path)
+
     def test_old_verified_memory_shape_is_preserved_but_derived(self):
         rows = [
             json.loads(line)
