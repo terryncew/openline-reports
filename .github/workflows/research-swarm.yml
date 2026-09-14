@@ -32,3 +32,29 @@ jobs:
               assert summary['generation'] == 1
               print(verify_demo(root, summary['evaluator_public_key']))
           PY
+      - name: Reproduce earned-memory interruption and standing proof
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import tempfile
+          from openline_reports.swarm.inheritance import (
+              run_earned_memory_proof,
+              verify_earned_memory_proof,
+          )
+          with tempfile.TemporaryDirectory() as td:
+              root = Path(td) / 'earned-memory-001'
+              summary = run_earned_memory_proof(root)
+              print(summary)
+              assert summary['verdict'] == 'EARNED_MEMORY_DEFEASIBLE_INHERITANCE_ENFORCED'
+              assert summary['phase_statuses'] == ['candidate', 'inherited', 'questioned']
+              assert summary['receiver_generation'] == 1
+              assert summary['generation_2_inherited_count'] == 0
+              assert summary['rollback_execution_authority'] == 'NONE'
+              assert summary['rollback_auto_execute'] is False
+              assert summary['constitutional_attack_evaluator_calls'] == 0
+              print(verify_earned_memory_proof(
+                  root,
+                  expected_evaluator_public_key=summary['evaluator_public_key'],
+                  expected_proof_adapter_public_key=summary['proof_adapter_public_key'],
+              ))
+          PY
