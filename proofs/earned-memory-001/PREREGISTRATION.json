@@ -1,0 +1,42 @@
+{
+  "schema": "openline.reports.earned-memory.preregistration.v1",
+  "experiment_id": "EARNED-MEMORY-001",
+  "base_repository": "terryncew/openline-reports",
+  "base_commit": "fd5fc4ba3a0f23d69383769d2eac3b5dea04ca60",
+  "primary_outcome_seen": false,
+  "scientific_standing": "PROTOCOL_FROZEN_PRE_PRIMARY_OUTCOME",
+  "question": "Can exact receiver promotion earn inherited memory after an interruption, and can later evidence loss remove that lesson from inherited context without silently rolling back installed receiver state?",
+  "frozen_sequence": [
+    "evaluate exact source_limit=8 strategy and persist PROMOTE",
+    "interrupt before promotion execution; memory must remain candidate",
+    "restart and execute exact persisted promotion; memory must become inherited",
+    "withdraw supporting evidence; Claim Graph must touch/quarantine the support claim",
+    "post-promotion standing must REOPEN; rollback recommendation must have no execution authority",
+    "installed version must remain unchanged because rollback is not executed",
+    "generation-2 context must exclude questioned memory from inherited lessons",
+    "candidate with evaluator field must be denied before evaluator invocation"
+  ],
+  "required_verdict": "EARNED_MEMORY_DEFEASIBLE_INHERITANCE_ENFORCED",
+  "required_phase_statuses": ["candidate", "inherited", "questioned"],
+  "required_receiver_generation_after_reopen": 1,
+  "required_generation_2_inherited_count": 0,
+  "required_constitutional_attack_evaluator_calls": 0,
+  "required_rollback_execution_authority": "NONE",
+  "required_rollback_auto_execute": false,
+  "pinned_dependencies": {
+    "openline-lite": "131492d9293ab8ac5827e9c531cc5a8972e45979",
+    "openline-swarm-improvement-gate": "cfa9d1e9176b4849e53146101b3345dcd825700b",
+    "openline-proof-adapter": "e1a36fe0f17fe2fad0e92daf63eb07f4f5c39e76",
+    "openline-claim-graph": "30a3ee1316d0b388fd4f20fa49e25556fef1985b"
+  },
+  "non_claims": [
+    "unrestricted recursive self-improvement",
+    "live LLM self-modification",
+    "hostile same-host isolation",
+    "evaluator correctness",
+    "provider portability",
+    "automatic rollback",
+    "general memory usefulness",
+    "unseen-task performance gain"
+  ]
+}
